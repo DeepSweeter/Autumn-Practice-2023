@@ -1,0 +1,42 @@
+$date
+	Mon Sep  4 18:24:01 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module DUT $end
+$var wire 32 ! dout [31:0] $end
+$var reg 8 " a [7:0] $end
+$var reg 8 # b [7:0] $end
+$var reg 8 $ c [7:0] $end
+$var reg 4 % d [3:0] $end
+$var reg 4 & e [3:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#3
+b1001 &
+b111 %
+b10010 $
+b10 #
+b10010111000100100000001000010000 !
+b10000 "
+#26
+b111 &
+b100 %
+b10000 $
+b10011 #
+b1110100000100000001001100010100 !
+b10100 "
+#126

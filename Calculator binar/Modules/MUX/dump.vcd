@@ -1,0 +1,27 @@
+$date
+	Mon Sep  4 20:01:41 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module DUT $end
+$var wire 10 ! dout [9:0] $end
+$var reg 10 " inA [9:0] $end
+$var reg 10 # inB [9:0] $end
+$var reg 1 $ sel $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+b1001 #
+b111 "
+b111 !
+$end
+#5
+b1001 !
+1$
+#105
