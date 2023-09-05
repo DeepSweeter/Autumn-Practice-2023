@@ -46,12 +46,15 @@ module ALU(
                 if(inB == 0)
                     begin
                         flags[2] = 1'b1;
+                        dout = 8'b0;
                     end
-                if(inA < inB)
+                else if(inA < inB)
                     begin
                         flags[3] = 1'b1;
+                        dout = 8'b0;
                     end
-                dout = inA / inB;
+                else
+                    dout = inA / inB;
 
             end
             4'h4:begin //SHL
