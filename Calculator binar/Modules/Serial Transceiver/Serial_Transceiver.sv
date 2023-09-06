@@ -14,7 +14,7 @@ module Serial_Transceiver #(
 );
     reg [31:0] mem;
     
-    integer i = 32 / LENGTH;
+    reg[5:0] i = 32 / LENGTH;
 
     always@(posedge clkTx or posedge clk or posedge reset) begin
         if(reset)begin
@@ -25,8 +25,10 @@ module Serial_Transceiver #(
         end
         else begin
             if(clk) begin
-                if(sample && ~startTx)
+                if(sample && ~startTx)begin
                     mem <= din;
+                    i = 32/LENGTH;
+                end
                 else if(~sample && startTx)begin
                     txBusy <= 1'b1;
                 end

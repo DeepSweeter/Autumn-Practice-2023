@@ -12,7 +12,7 @@ module Memory #(
 );
 
     reg [WIDTH-1:0] mem [0:(1<<DEPTH)-1];
-    integer i;
+    reg [8:0] i;
 
     always@(posedge reset or posedge clk)
         begin
@@ -24,10 +24,10 @@ module Memory #(
             else begin
                 if(clk) begin
                     if(valid)begin
-                        if(RW)
-                            dout <= mem[addr];
-                        else
+                        if(RW)    
                             mem[addr] <= din;
+                        else
+                            dout <= mem[addr];
                     end
                     else
                         dout<= 32'b0;
