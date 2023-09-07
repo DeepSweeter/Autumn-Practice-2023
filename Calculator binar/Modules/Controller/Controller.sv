@@ -22,12 +22,13 @@ module DecInputKey(
                    mem[i] = inputKey;
                    i = i + 1;
                 end
-
             end
             if(i == 5) begin
                 if(mem[3:0]==4'b0101) begin
                     active <= 1'b1;
                     mode <= mem[4];
+                    if(validCmd)
+                        mode <= inputKey;
                 end
 
                 end

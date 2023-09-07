@@ -25,6 +25,9 @@ module DUT;
             #0 din = 32'd6; configDiv = 1'b0; enable= 1'b0;  reset = 1'b1;
             #14 reset = 1'b0; configDiv = 1'b1;
             #24 enable = 1'b1; configDiv = 1'b0;
+            #150 din = 32'd2;
+            #100 enable = 1'b0;configDiv =1'b1;
+            #20 enable = 1'b1; configDiv=1'b0;
             #200 $finish;
         end
 

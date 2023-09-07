@@ -25,7 +25,10 @@ module DUT;
             #10 inputKey = 1'b1;
             #10 inputKey = 1'b0;
             #10 inputKey = 1'b1; // Mode 1
-            #7 validCmd = 1'b0;
+            #10 inputKey = 1'b0;
+            #10 inputKey = 1'b1;
+            #10 validCmd = 1'b1;
+            #27 validCmd = 1'b0;
 
             #10 reset = 1'b1;
             #13 reset = 1'b0; validCmd = 1'b1; inputKey = 1'b1;
