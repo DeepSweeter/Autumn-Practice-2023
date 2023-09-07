@@ -1,0 +1,684 @@
+$date
+	Thu Sep  7 21:35:47 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module DUT $end
+$scope module dut $end
+$var wire 8 ! ADDR [7:0] $end
+$var wire 1 " RW $end
+$var wire 1 # RWTmp $end
+$var wire 4 $ aluOp [3:0] $end
+$var wire 1 % clk $end
+$var wire 1 & clkTx $end
+$var wire 1 ' configDiv $end
+$var wire 32 ( freqDivInput [31:0] $end
+$var wire 8 ) inA [7:0] $end
+$var wire 8 * inB [7:0] $end
+$var wire 1 + inputKey $end
+$var wire 1 , reset $end
+$var wire 1 - resetTmp $end
+$var wire 1 . validCmd $end
+$var wire 1 / st_txdone $end
+$var wire 32 0 mem_out [31:0] $end
+$var wire 32 1 m4_out [31:0] $end
+$var wire 4 2 m3_out [3:0] $end
+$var wire 8 3 m2_out [7:0] $end
+$var wire 8 4 m1_out [7:0] $end
+$var wire 32 5 concat_out [31:0] $end
+$var wire 1 6 clkTxOut $end
+$var wire 1 7 calcBusy $end
+$var wire 1 8 c_txdata $end
+$var wire 1 9 c_sample $end
+$var wire 1 : c_rwmem $end
+$var wire 1 ; c_mode $end
+$var wire 1 < c_active $end
+$var wire 1 = c_accessmem $end
+$var wire 8 > alu_out [7:0] $end
+$var wire 4 ? alu_flags [3:0] $end
+$var wire 1 @ DoutValid $end
+$var wire 1 A DataOut $end
+$scope module M1 $end
+$var wire 8 B inA [7:0] $end
+$var wire 8 C inB [7:0] $end
+$var wire 1 - sel $end
+$var wire 8 D dout [7:0] $end
+$upscope $end
+$scope module M2 $end
+$var wire 8 E inA [7:0] $end
+$var wire 8 F inB [7:0] $end
+$var wire 1 - sel $end
+$var wire 8 G dout [7:0] $end
+$upscope $end
+$scope module M3 $end
+$var wire 4 H inA [3:0] $end
+$var wire 4 I inB [3:0] $end
+$var wire 1 - sel $end
+$var wire 4 J dout [3:0] $end
+$upscope $end
+$scope module M4 $end
+$var wire 1 ; sel $end
+$var wire 32 K inB [31:0] $end
+$var wire 32 L inA [31:0] $end
+$var wire 32 M dout [31:0] $end
+$upscope $end
+$scope module alu $end
+$var wire 8 N inA [7:0] $end
+$var wire 8 O inB [7:0] $end
+$var wire 4 P sel_tmp [3:0] $end
+$var reg 8 Q dout [7:0] $end
+$var reg 4 R flags [3:0] $end
+$upscope $end
+$scope module con $end
+$var wire 1 # RW $end
+$var wire 1 S activeOut $end
+$var wire 1 % clk $end
+$var wire 1 + inputKey $end
+$var wire 1 T modeOut $end
+$var wire 1 , reset $end
+$var wire 1 . validCmd $end
+$var wire 1 / txDone $end
+$var wire 1 ; mode $end
+$var wire 1 < active $end
+$var wire 1 8 TxData $end
+$var wire 1 9 SampleData $end
+$var wire 1 : RWMem $end
+$var wire 1 7 Busy $end
+$var wire 1 = AccessMem $end
+$scope module crwf $end
+$var wire 1 # RW $end
+$var wire 1 S active $end
+$var wire 1 % clk $end
+$var wire 1 T mode $end
+$var wire 1 , reset $end
+$var wire 1 . validCmd $end
+$var wire 1 / txDone $end
+$var wire 5 U in [4:0] $end
+$var reg 1 = AccessMem $end
+$var reg 1 7 Busy $end
+$var reg 1 : RWMem $end
+$var reg 1 9 SampleData $end
+$var reg 1 8 TxData $end
+$var reg 3 V cs [2:0] $end
+$var reg 3 W ns [2:0] $end
+$upscope $end
+$scope module decInKey $end
+$var wire 1 % clk $end
+$var wire 1 + inputKey $end
+$var wire 1 , reset $end
+$var wire 1 . validCmd $end
+$var reg 1 < active $end
+$var reg 3 X i [2:0] $end
+$var reg 5 Y mem [4:0] $end
+$var reg 1 ; mode $end
+$upscope $end
+$upscope $end
+$scope module concat $end
+$var wire 8 Z a [7:0] $end
+$var wire 8 [ b [7:0] $end
+$var wire 8 \ c [7:0] $end
+$var wire 4 ] d [3:0] $end
+$var wire 4 ^ e [3:0] $end
+$var wire 32 _ dout [31:0] $end
+$upscope $end
+$scope module fd $end
+$var wire 1 % clk $end
+$var wire 1 ' configDiv $end
+$var wire 32 ` din [31:0] $end
+$var wire 1 < enable $end
+$var wire 1 - reset $end
+$var reg 1 6 clkOut $end
+$var reg 32 a counter [31:0] $end
+$var reg 32 b mem [31:0] $end
+$upscope $end
+$scope module mem $end
+$var wire 1 : RW $end
+$var wire 8 c addr [7:0] $end
+$var wire 1 % clk $end
+$var wire 32 d din [31:0] $end
+$var wire 1 - reset $end
+$var wire 1 = valid $end
+$var reg 32 e dout [31:0] $end
+$var reg 9 f i [8:0] $end
+$upscope $end
+$scope module st $end
+$var wire 1 % clk $end
+$var wire 1 & clkTx $end
+$var wire 32 g din [31:0] $end
+$var wire 1 - reset $end
+$var wire 1 9 sample $end
+$var wire 1 8 startTx $end
+$var reg 1 A dout $end
+$var reg 6 h i [5:0] $end
+$var reg 32 i mem [31:0] $end
+$var reg 1 @ txBusy $end
+$var reg 1 / txDone $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module DUT $end
+$scope module dut $end
+$scope module mem $end
+$var reg 32 j \mem[4] [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 j
+b0 i
+b100000 h
+b1xxxx000000000000000000000000 g
+b100000000 f
+b0 e
+b1xxxx000000000000000000000000 d
+bx c
+b1 b
+b0 a
+bx `
+b1xxxx000000000000000000000000 _
+b1 ^
+bx ]
+b0 \
+b0 [
+b0 Z
+b0 Y
+b0 X
+b0 W
+b0 V
+b0 U
+0T
+0S
+b1 R
+b0 Q
+b0 P
+b0 O
+b0 N
+b1xxxx000000000000000000000000 M
+b1xxxx000000000000000000000000 L
+b0 K
+b0 J
+b0 I
+bx H
+b0 G
+b0 F
+bx E
+b0 D
+b0 C
+bx B
+0A
+0@
+b1 ?
+b0 >
+0=
+0<
+0;
+0:
+09
+08
+07
+06
+b1xxxx000000000000000000000000 5
+b0 4
+b0 3
+b0 2
+b1xxxx000000000000000000000000 1
+b0 0
+0/
+0.
+1-
+1,
+0+
+bx *
+bx )
+bx (
+x'
+0&
+0%
+bx $
+0#
+x"
+bx !
+$end
+#5
+b0 j
+b100000000 f
+1%
+#10
+0%
+#13
+b1111 >
+b1111 Q
+b1111 \
+b0 ?
+b0 R
+b0 ^
+b111 4
+b111 D
+b111 N
+b111 Z
+b1000 3
+b1000 G
+b1000 O
+b1000 [
+b11110000100000000111 1
+b11110000100000000111 M
+b11110000100000000111 g
+0-
+b11110000100000000111 5
+b11110000100000000111 L
+b11110000100000000111 _
+b11110000100000000111 d
+b0 $
+b0 H
+b0 ]
+b1000 *
+b1000 E
+b111 )
+b111 B
+1"
+1'
+b100 (
+b100 `
+b100 !
+b100 c
+1+
+b10000 U
+1.
+0,
+#15
+b100 b
+b1 X
+b1 Y
+1%
+#20
+0%
+#23
+0+
+#25
+b10 X
+1%
+#30
+0%
+#33
+1+
+#35
+b11 X
+b101 Y
+1%
+#40
+0%
+#43
+0+
+#45
+b100 X
+1%
+#50
+0%
+#53
+1+
+#55
+b100 W
+b0 1
+b0 M
+b0 g
+1#
+1T
+1;
+b11110 U
+1S
+1<
+b101 X
+b10101 Y
+1%
+#60
+0%
+#65
+1=
+1:
+17
+b100 V
+1&
+16
+b1 a
+1%
+#70
+0%
+#73
+b0 W
+b11100 U
+0#
+0"
+#75
+0=
+0:
+07
+b1 W
+b0 V
+b10 a
+b11110000100000000111 j
+1%
+#80
+0%
+#85
+1=
+17
+b10 W
+b1 V
+0&
+06
+b11 a
+1%
+#90
+0%
+#95
+0=
+19
+b11 W
+b11110000100000000111 1
+b11110000100000000111 M
+b11110000100000000111 g
+b10 V
+b0 a
+b11110000100000000111 0
+b11110000100000000111 K
+b11110000100000000111 e
+1%
+#100
+0%
+#105
+09
+18
+b0 1
+b0 M
+b0 g
+b11 V
+b0 0
+b0 K
+b0 e
+1&
+16
+b1 a
+b11110000100000000111 i
+1%
+#110
+0%
+#115
+b10 a
+1@
+1%
+#120
+0%
+#125
+0&
+06
+b11 a
+b111100001000000001110 i
+b11111 h
+1%
+#130
+0%
+#135
+b0 a
+1%
+#140
+0%
+#145
+b1111000010000000011100 i
+b11110 h
+1&
+16
+b1 a
+1%
+#150
+0%
+#155
+b10 a
+b11110000100000000111000 i
+b11101 h
+1%
+#160
+0%
+#165
+0&
+06
+b11 a
+b111100001000000001110000 i
+b11100 h
+1%
+#170
+0%
+#175
+b0 a
+1%
+#180
+0%
+#185
+b1111000010000000011100000 i
+b11011 h
+1&
+16
+b1 a
+1%
+#190
+0%
+#195
+b10 a
+b11110000100000000111000000 i
+b11010 h
+1%
+#200
+0%
+#205
+0&
+06
+b11 a
+b111100001000000001110000000 i
+b11001 h
+1%
+#210
+0%
+#215
+b0 a
+1%
+#220
+0%
+#225
+b1111000010000000011100000000 i
+b11000 h
+1&
+16
+b1 a
+1%
+#230
+0%
+#235
+b10 a
+b11110000100000000111000000000 i
+b10111 h
+1%
+#240
+0%
+#245
+0&
+06
+b11 a
+b111100001000000001110000000000 i
+b10110 h
+1%
+#250
+0%
+#255
+b0 a
+1%
+#260
+0%
+#265
+b1111000010000000011100000000000 i
+b10101 h
+1&
+16
+b1 a
+1%
+#270
+0%
+#275
+b10 a
+b11110000100000000111000000000000 i
+b10100 h
+1%
+#280
+0%
+#285
+0&
+06
+b11 a
+b11100001000000001110000000000000 i
+1A
+b10011 h
+1%
+#290
+0%
+#295
+b0 a
+1%
+#300
+0%
+#305
+b11000010000000011100000000000000 i
+b10010 h
+1&
+16
+b1 a
+1%
+#310
+0%
+#315
+b10 a
+b10000100000000111000000000000000 i
+b10001 h
+1%
+#320
+0%
+#325
+0&
+06
+b11 a
+b1000000001110000000000000000 i
+b10000 h
+1%
+#330
+0%
+#335
+b0 a
+1%
+#340
+0%
+#345
+b10000000011100000000000000000 i
+0A
+b1111 h
+1&
+16
+b1 a
+1%
+#350
+0%
+#355
+b10 a
+b100000000111000000000000000000 i
+b1110 h
+1%
+#360
+0%
+#365
+0&
+06
+b11 a
+b1000000001110000000000000000000 i
+b1101 h
+1%
+#370
+0%
+#375
+b0 a
+1%
+#380
+0%
+#385
+b10000000011100000000000000000000 i
+b1100 h
+1&
+16
+b1 a
+1%
+#390
+0%
+#395
+b10 a
+b111000000000000000000000 i
+1A
+b1011 h
+1%
+#400
+0%
+#405
+0&
+06
+b11 a
+b1110000000000000000000000 i
+0A
+b1010 h
+1%
+#410
+0%
+#415
+b0 a
+1%
+#420
+0%
+#425
+b11100000000000000000000000 i
+b1001 h
+1&
+16
+b1 a
+1%
+#430
+0%
+#435
+b10 a
+b111000000000000000000000000 i
+b1000 h
+1%
+#440
+0%
+#445
+0&
+06
+b11 a
+b1110000000000000000000000000 i
+b111 h
+1%
+#450
+0%
+#455
+b0 a
+1%
+#460
+0%
+#465
+b11100000000000000000000000000 i
+b110 h
+1&
+16
+b1 a
+1%
+#470
+0%
+#473

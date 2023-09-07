@@ -1,5 +1,5 @@
 $date
-	Thu Sep  7 14:56:35 2023
+	Thu Sep  7 18:48:21 2023
 $end
 $version
 	Icarus Verilog
@@ -8,280 +8,240 @@ $timescale
 	1s
 $end
 $scope module DUT $end
-$scope module decIK_dut $end
-$var wire 1 ! clk $end
-$var wire 1 " inputKey $end
-$var wire 1 # reset $end
-$var wire 1 $ validCmd $end
-$var reg 1 % active $end
-$var reg 3 & i [2:0] $end
-$var reg 5 ' mem [4:0] $end
-$var reg 1 ( mode $end
+$scope module controller_dut $end
+$var wire 1 ! RW $end
+$var wire 1 " activeOut $end
+$var wire 1 # clk $end
+$var wire 1 $ inputKey $end
+$var wire 1 % modeOut $end
+$var wire 1 & reset $end
+$var wire 1 ' txDone $end
+$var wire 1 ( validCmd $end
+$var wire 1 ) mode $end
+$var wire 1 * active $end
+$var wire 1 + TxData $end
+$var wire 1 , SampleData $end
+$var wire 1 - RWMem $end
+$var wire 1 . Busy $end
+$var wire 1 / AccessMem $end
+$scope module crwf $end
+$var wire 1 ! RW $end
+$var wire 1 " active $end
+$var wire 1 # clk $end
+$var wire 1 % mode $end
+$var wire 1 & reset $end
+$var wire 1 ' txDone $end
+$var wire 1 ( validCmd $end
+$var wire 5 0 in [4:0] $end
+$var reg 1 / AccessMem $end
+$var reg 1 . Busy $end
+$var reg 1 - RWMem $end
+$var reg 1 , SampleData $end
+$var reg 1 + TxData $end
+$var reg 3 1 cs [2:0] $end
+$var reg 3 2 ns [2:0] $end
+$upscope $end
+$scope module decInKey $end
+$var wire 1 # clk $end
+$var wire 1 $ inputKey $end
+$var wire 1 & reset $end
+$var wire 1 ( validCmd $end
+$var reg 1 * active $end
+$var reg 3 3 i [2:0] $end
+$var reg 5 4 mem [4:0] $end
+$var reg 1 ) mode $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+b0 4
+b0 3
+b0 2
+b0 1
+b0xx 0
+0/
+0.
+0-
+0,
+0+
+0*
+0)
 0(
-b0 '
-b0 &
+x'
+1&
 0%
 0$
-1#
+0#
 0"
-0!
+x!
 $end
 #5
-1!
-#10
-0!
-#13
-1"
-1$
-0#
-#15
-b1 &
-b1 '
-1!
-#20
-0!
-#23
-0"
-#25
-b10 &
-1!
-#30
-0!
-#33
-1"
-#35
-b11 &
-b101 '
-1!
-#40
-0!
-#43
-0"
-#45
-b100 &
-1!
-#50
-0!
-#53
-1"
-#55
-1(
-1%
-b101 &
-b10101 '
-1!
-#60
-0!
-#63
-0"
-#65
-0(
-1!
-#70
-0!
-#73
-1"
-#75
-1(
-1!
-#80
-0!
-#85
-1!
-#90
-0!
-#95
-1!
-#100
-0!
-#105
-1!
-#110
-0!
-0$
-#115
-1!
-#120
-0(
-0%
-b0 &
-b0 '
-0!
 1#
-#125
-1!
-#130
-0!
-#133
+#10
+0#
+#13
 1$
+b100xx 0
+1(
+0&
+#15
+b1 3
+b1 4
+1#
+#20
+0#
+#23
+0$
+#25
+b10 3
+1#
+#30
+0#
+#33
+1$
+#35
+b11 3
+b101 4
+1#
+#40
+0#
+#43
+0$
+#45
+b100 3
+1#
+#50
+0#
+#53
+0'
+b10000 0
+0!
+1$
+#55
+b1 2
+1%
+1)
+b11100 0
+1"
+1*
+b101 3
+b10101 4
+1#
+#60
+0#
+#65
+1/
+1.
+b10 2
+b1 1
+1#
+#70
+0#
+#75
+0/
+1,
+b11 2
+b10 1
+1#
+#80
+0#
+#85
+0,
+1+
+b11 1
+1#
+#90
+0#
+#95
+1#
+#100
+b0 2
+0#
+1'
+b1101 0
+0(
+#105
+0+
+0.
+b0 1
+1#
+#110
+0#
+#115
+1#
+#120
+0#
+#125
+1#
+#130
 0#
 #135
-b1 &
-b1 '
-1!
-#140
-0!
-#143
-0"
-#145
-b10 &
-1!
-#150
-0!
-#153
-1"
-#155
-b11 &
-b101 '
-1!
-#160
-0!
-#163
-0"
-#165
-b100 &
-1!
-#170
-0!
-#175
-1%
-b101 &
-1!
-#180
-0!
-0$
-#185
-1!
-#190
-0%
-b0 &
-b0 '
-0!
 1#
+#140
+0#
+#145
+1#
+#150
+0#
+#155
+1#
+#160
+0#
+#165
+1#
+#170
+0#
+#175
+1#
+#180
+0#
+#185
+1#
+#190
+0#
 #195
-1!
+1#
 #200
-0!
-#203
-1"
-1$
 0#
 #205
-b1 &
-b1 '
-1!
+1#
 #210
-0!
-#213
-0"
+0#
 #215
-b10 &
-1!
+1#
 #220
-0!
+0#
 #225
-b11 &
-1!
+1#
 #230
-0!
-#233
-1"
+0#
 #235
-b100 &
-b1001 '
-1!
+1#
 #240
-0!
-#243
-0"
+0#
 #245
-b101 &
-1!
+1#
 #250
-0!
-0$
+0#
 #255
-1!
+1#
 #260
-0!
+0#
 #265
-1!
+1#
 #270
-0!
+0#
 #275
-1!
+1#
 #280
-0!
+0#
 #285
-1!
+1#
 #290
-0!
+0#
 #295
-1!
+1#
 #300
-0!
-#305
-1!
-#310
-0!
-#315
-1!
-#320
-0!
-#325
-1!
-#330
-0!
-#335
-1!
-#340
-0!
-#345
-1!
-#350
-0!
-#355
-1!
-#360
-0!
-#365
-1!
-#370
-0!
-#375
-1!
-#380
-0!
-#385
-1!
-#390
-0!
-#395
-1!
-#400
-0!
-#405
-1!
-#410
-0!
-#415
-1!
-#420
-0!
-#425
-1!
-#430
-0!
-#435
-1!
-#440
-0!
-#445
-1!
-#450
-0!
+0#
