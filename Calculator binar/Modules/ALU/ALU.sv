@@ -5,6 +5,7 @@ module ALU(
   output reg [7:0] dout,
   output reg [3:0] flags
 );
+// Flag-ul 0 se activeaza la orice operatie daca rezultatul este 0
   always@(*)
     begin
         flags = 4'b0;
