@@ -20,7 +20,7 @@ module top(
     input configDiv,
     output  calcBusy,
     output  DoutValid,
-    output  DataOut,
+    output  DataOut, //trebuie modificat in functie de parametrul LENGTH de la Serial_Transceiver
     output  clkTxOut
 );
 
@@ -74,7 +74,9 @@ module top(
 
     Memory #(.WIDTH(32), .DEPTH(8)) mem(.din(concat_out), .addr(ADDR), .RW(c_rwmem), .valid(c_accessmem), .reset(resetTmp), .clk(clk), .dout(mem_out));
 
+    //Daca se modifica parametrul length atunci DataOut trebuie modificat si el sa corespunda cu dimensiunea noua.
     Serial_Transceiver #(.LENGTH(1)) st(.din(m4_out), .sample(c_sample), .startTx(c_txdata), .reset(resetTmp), .clk(clk), .clkTx(clkTx), .txDone(st_txdone), .txBusy(DoutValid), .dout(DataOut));
+    
 
     Controller con(.inputKey(inputKey), .validCmd(validCmd), .clk(clk), .reset(reset), .RW(RWTmp), .txDone(st_txdone),
                  .active(c_active), .mode(c_mode), .AccessMem(c_accessmem), .RWMem(c_rwmem), .SampleData(c_sample), .TxData(c_txdata), .Busy(calcBusy));

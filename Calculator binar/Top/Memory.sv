@@ -24,9 +24,9 @@ module Memory #(
             else begin
                 if(clk) begin
                     if(valid)begin
-                        if(RW)    
+                        if(RW)   //RW = 1 => Write in memory 
                             mem[addr] <= din;
-                        else
+                        else // RW = 0 => Read from memory
                             dout <= mem[addr];
                     end
                     else

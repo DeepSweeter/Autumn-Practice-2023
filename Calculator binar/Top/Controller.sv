@@ -7,6 +7,9 @@ module DecInputKey(
     output reg mode
 );
     reg [4:0] mem;
+
+    //Folosit pentru a determina cand a fost terminata introducerea secventei secrete
+        //si a primului input de mode  
     reg [2:0] i = 3'd0;
 
     always@(posedge clk or posedge reset)begin
@@ -18,17 +21,18 @@ module DecInputKey(
         end
         else begin
             if(validCmd) begin
-                if(i < 5)begin
+                if(i < 5)begin // Daca i == 5 a fost introduse secventa secreta si trebuie verificata
                    mem[i] = inputKey;
                    i = i + 1;
                 end
             end
             if(i == 5) begin
-                if(mem[3:0]==4'b0101) begin
+                if(mem[3:0]==4'b0101) begin // Verificare secventa
                     active <= 1'b1;
-                    mode <= mem[4];
+                    mode <= mem[4]; //A fost introdus modul in mem pentru a putea fi activat simultan cu active
+                    //altfel ar fi existat un delay de un clk intre ele
                     if(validCmd)
-                        mode <= inputKey;
+                        mode <= inputKey; // Daca validCmd = 1 atunci mode va deveni inputKey la fiecare clk.
                 end
 
                 end
@@ -55,8 +59,10 @@ module Control_RW_Flow (
 reg [2:0] cs, ns;
 wire [4:0] in;
 
+//Datele de intrare dupa care se modifica starile
 assign in = {validCmd, active, mode, RW, txDone}; 
 
+//Pentru graful de fluenta vezi documentatia.
 parameter s0 = 3'b000;
 parameter s1 = 3'b001;
 parameter s2 = 3'b010;

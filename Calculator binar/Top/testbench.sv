@@ -5,7 +5,8 @@ module DUT;
     reg [3:0] aluOp;
     reg [31:0] freqDivInput;
 
-    wire calcBusy, DoutValid, DataOut, clkTxOut;
+    wire calcBusy, DoutValid, clkTxOut;
+    wire DataOut; //trebuie modificat in functie de parametrul LENGTH de la Serial_Transceiver
 
     top dut(
         //Inputs
@@ -22,7 +23,7 @@ module DUT;
         .configDiv(configDiv),
         //Ouputs
         .calcBusy(calcBusy),
-        .DoutValid(DoutValid),
+        .DoutValid(DoutValid), 
         .DataOut(DataOut),
         .clkTxOut(clkTxOut)
     );
@@ -46,13 +47,14 @@ module DUT;
             #10 inputKey = 1'b0;
             #10 inputKey = 1'b1;
             #10 inputKey = 1'b0;
-            #10 inputKey = 1'b1;// Mode 1
-            #20 RW = 1'b0;
-            
+            #10 inputKey = 1'b1;// Mode 1 Write
+            #20 RW = 1'b0; //Mode 1 Read
+            // #137 inputKey = 1'b0;
+            // #290 validCmd = 1'b0;
             
 
 
-            #400 $finish;
+            #3000 $finish;
         end
 
 endmodule
