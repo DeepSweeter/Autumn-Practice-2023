@@ -4,22 +4,28 @@
 
 `define DIV 3
 `define DinLENGTH 8+3*INBITS
-
-`include "interfaces.sv"
+`include "package_in.sv"
+`include "package_out.sv"
+`include "interface_in.sv"
+`include "interface_out.sv"
 `include "generator.sv"
+`include "driver.sv"
+`include "monitor_in.sv"
+`include "monitor_out.sv"
+
 module test();
-   reg Clk;//Reset,ValidCmd,RW,ConfigDiv,InputKey;
-  // reg[31:0]Din;
-  // reg[3:0]Sel;
-  // reg[`INBITS-1:0]InA,InB;
-  // reg[`WIDTH-1:0]Addr;
-  // wire CalcBusy,ClkTx,DoutValid;
-  // wire[`SBITS-1:0]DataOut;
+   	reg Clk;//,Reset,ValidCmd,RW,ConfigDiv,InputKey;
+//   reg[31:0]Din;
+//   reg[3:0]Sel;
+//   reg[`INBITS-1:0]InA,InB;
+//   reg[`WIDTH-1:0]Addr;
+//   wire CalcBusy,ClkTx,DoutValid;
+//   wire[`SBITS-1:0]DataOut;
 
   
 
  inputData #(.INBITS(`INBITS), .WIDTH(`WIDTH)) iData (Clk);
- outputData #(.SBITS(`SBITS)) oData(Clk); 
+  outputData #(.SBITI(`SBITS)) oData(Clk); 
 
  BinaryCalculator 
   #(`INBITS,`WIDTH,`SBITS) bc (Clk,
@@ -48,11 +54,13 @@ module test();
     begin
       $dumpfile("dump.vcd"); 
       $dumpvars(0,bc);
+//       $dumpvars(1, iData);
+//       $dumpvars(1, oData);
       #0//Init values
       iData.Reset=1'b0;
       iData.ValidCmd=1'b0;
       iData.RW=1'b0;
-      ConfigDiv=1'b0;
+      iData.ConfigDiv=1'b0;
       iData.InputKey=1'b0;
       iData.Din=32'h0;
       iData.Sel=4'h0;

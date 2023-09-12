@@ -1,18 +1,3 @@
-class dut_package_in;
-    rand bit [7:0] inA;
-    rand bit [7:0] inB;
-    rand bit [3:0] Sel;
-    rand bit [31:0] Din;
-    rand bit [7:0] Addr;
-    bit InputKey, ValidCmd, RW, ConfigDiv;
-
-    function void print(string tag="");
-        $display("T=%0t %s inA = 0x%0h inB = 0x%0h sel = 0x%0h Din = 0x%0h, Addr = 0x%0h",
-        $time, tag, inA, inB, Sel, Din, Addr);
-    endfunction
-
-endclass
-
 
 class generator;
     mailbox drv_mbx;
