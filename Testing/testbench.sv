@@ -4,14 +4,14 @@
 
 `define DIV 3
 `define DinLENGTH 8+3*INBITS
-`include "package_in.sv"
-`include "package_out.sv"
-`include "interface_in.sv"
-`include "interface_out.sv"
-`include "generator.sv"
-`include "driver.sv"
-`include "monitor_in.sv"
-`include "monitor_out.sv"
+
+`ifndef TEST
+  `include "test.sv"
+	`define TEST
+`endif
+  
+
+
 
 module test();
    	reg Clk;//,Reset,ValidCmd,RW,ConfigDiv,InputKey;
@@ -24,15 +24,20 @@ module test();
 
   
 
- inputData #(.INBITS(`INBITS), .WIDTH(`WIDTH)) iData (Clk);
+  inputData #(.INBITS(`INBITS), .WIDTH(`WIDTH)) iData (Clk);
   outputData #(.SBITI(`SBITS)) oData(Clk); 
+  interface_Intern iIntern(Clk);
+  test t0;
+  
+  
+  
 
  BinaryCalculator 
   #(`INBITS,`WIDTH,`SBITS) bc (Clk,
                                iData.InputKey,
                                iData.ValidCmd,
-                               iData.InA,
-                               iData.InB,
+                               iData.inA,
+                               iData.inB,
                                iData.RW,
                                iData.Addr,
                                iData.Sel,
@@ -49,6 +54,11 @@ module test();
       Clk=1'b0;
       forever #5 Clk = ~Clk;
     end
+  
+ 
+    assign iIntern.SampleData = bc.SampleData;
+    assign iIntern.TransferData = bc.TransferData;
+ 
 
   initial
     begin
@@ -57,79 +67,103 @@ module test();
 //       $dumpvars(1, iData);
 //       $dumpvars(1, oData);
       #0//Init values
-      iData.Reset=1'b0;
-      iData.ValidCmd=1'b0;
-      iData.RW=1'b0;
-      iData.ConfigDiv=1'b0;
-      iData.InputKey=1'b0;
-      iData.Din=32'h0;
-      iData.Sel=4'h0;
-      iData.InA=`INBITS'h4;
-      iData.InB=`INBITS'h4;
-      iData.Addr=`WIDTH'h0;
-
-      #20//config clk divider
-      iData.Din=32'h`DIV;
-      iData.ConfigDiv=1'b1;
+      iData.ValidCmd = 1'b1;
+      iData.InputKey = 1'b1;
+      iData.Reset = 1'b0;
       #10
-      iData.ConfigDiv=1'b0;
-
-      #20//input key (mode 1)
-      iData.ValidCmd=1'b1;
-      iData.InputKey=1'b1;
+      iData.InputKey = 1'b0;
       #10
-      iData.InputKey=1'b0;
+      iData.InputKey =1'b1;
       #10
-      iData.InputKey=1'b1;
+      iData.InputKey =1'b0;
+      
+      #10 iData.InputKey = 1'b0; iData.ConfigDiv = 1'b1; iData.RW = 1'b1;
+      
       #10
-      iData.InputKey=1'b0;
-      #10
-      iData.InputKey=1'b1;
-      #20
-      iData.ValidCmd=1'b0;
+	 
+      t0 = new;
+      t0.e0.interfaceID = iData;
+      t0.e0.interfaceOD = oData;
+      t0.e0.interfaceInt= iIntern;
+      
+      fork
+      	t0.run();
+      join_none
+      @(t0.e0.g0.gen_done);
+      #400
+      $finish(1);
+      
+//       iData.Reset=1'b0;
+//       iData.ValidCmd=1'b0;
+//       iData.RW=1'b0;
+//       iData.ConfigDiv=1'b0;
+//       iData.InputKey=1'b0;
+//       iData.Din=32'h0;
+//       iData.Sel=4'h0;
+//       iData.InA=`INBITS'h4;
+//       iData.InB=`INBITS'h4;
+//       iData.Addr=`WIDTH'h0;
+
+//       #20//config clk divider
+//       iData.Din=32'h`DIV;
+//       iData.ConfigDiv=1'b1;
+//       #10
+//       iData.ConfigDiv=1'b0;
+
+//       #20//input key (mode 1)
+//       iData.ValidCmd=1'b1;
+//       iData.InputKey=1'b1;
+//       #10
+//       iData.InputKey=1'b0;
+//       #10
+//       iData.InputKey=1'b1;
+//       #10
+//       iData.InputKey=1'b0;
+//       #10
+//       iData.InputKey=1'b1;
+//       #20
+//       iData.ValidCmd=1'b0;
 
 
-      #30//start write cmd
-      iData.RW=1'b1;
-      iData.ValidCmd=1'b1;
-      #10
-      iData.ValidCmd=1'b0;
+//       #30//start write cmd
+//       iData.RW=1'b1;
+//       iData.ValidCmd=1'b1;
+//       #10
+//       iData.ValidCmd=1'b0;
 
 
-      #30//start read cmd
-      iData.RW=1'b0;
-      iData.ValidCmd=1'b1;
-      #10
-      iData.ValidCmd=1'b0;
+//       #30//start read cmd
+//       iData.RW=1'b0;
+//       iData.ValidCmd=1'b1;
+//       #10
+//       iData.ValidCmd=1'b0;
 
 
-//       #(60+ `DinLENGTH*10+20*`DIV)
-      #360//wait finish read cmd
-      #40//start mode 0
-      iData.RW=1'b0;
-      iData.InputKey=1'b0;
-      iData.ValidCmd=1'b1;
-      #10
-      iData.ValidCmd=1'b0;
+// //       #(60+ `DinLENGTH*10+20*`DIV)
+//       #360//wait finish read cmd
+//       #40//start mode 0
+//       iData.RW=1'b0;
+//       iData.InputKey=1'b0;
+//       iData.ValidCmd=1'b1;
+//       #10
+//       iData.ValidCmd=1'b0;
 
 
-      #360//wait finish mode 0
-      #40//start mode 0
-      iData.RW=1'b0;
-      iData.Addr=`WIDTH'h1;
-      iData.InputKey=1'b0;
-      iData.ValidCmd=1'b1;
-      #10
-      iData.ValidCmd=1'b0;
+//       #360//wait finish mode 0
+//       #40//start mode 0
+//       iData.RW=1'b0;
+//       iData.Addr=`WIDTH'h1;
+//       iData.InputKey=1'b0;
+//       iData.ValidCmd=1'b1;
+//       #10
+//       iData.ValidCmd=1'b0;
 
-      #145//iData.Reset
-      iData.Reset=1'b1;
-      #10
-      iData.Reset=1'b0;
+//       #145//iData.Reset
+//       iData.Reset=1'b1;
+//       #10
+//       iData.Reset=1'b0;
 
-
-      #120
-      $finish(1);	
+	
     end
 
 endmodule

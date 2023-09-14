@@ -1,3 +1,5 @@
+
+
 interface inputData #(
     parameter INBITS=8,
     parameter WIDTH=8
@@ -11,7 +13,7 @@ interface inputData #(
     logic [3:0] Sel;
     logic [31:0] Din;
     logic [WIDTH-1:0] Addr;
-    logic [INBITS-1:0] InA, InB;
+  logic [INBITS-1:0] inA, inB;
 
 
 endinterface
