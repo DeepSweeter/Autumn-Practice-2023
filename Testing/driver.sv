@@ -26,9 +26,10 @@ class driver;
               $display("T=%0t [DRIVER] waiting for item ...", $time);
               drv_mbx.get(dpi);
               dpi.print("DRIVER");
-
+              interfaceID.commandInput = 1;
+              interfaceID.InputKey = dpi.InputKey;
               interfaceID.Reset = dpi.Reset;
-              interfaceID.ValidCmd = 1;
+              interfaceID.ValidCmd = dpi.ValidCmd;
               interfaceID.RW = 1;
               interfaceID.ConfigDiv = 1;
               interfaceID.Sel = dpi.Sel;
@@ -38,9 +39,10 @@ class driver;
               interfaceID.inB = dpi.inB;
               
               $display("T=%0t [DRIVER] finished processing ...", $time);
-              @(posedge interfaceID.Clk);
-              	interfaceID.ValidCmd =1;
+              @(posedge interfaceID.Clk)begin
+              	interfaceID.commandInput =0;
               ->drv_done;
+              end
 
 
         end

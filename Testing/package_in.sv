@@ -9,12 +9,12 @@ class dut_package_in #(int INBITS = 8, int WIDTH = 8);
     bit InputKey, ValidCmd, RW, ConfigDiv, Reset;
 
     constraint valid_Din {
-        Din <= 32'd4;
+        Din == 32'd1;
     };
     
     function void print(string tag="");
-      $display("T=%0t %s inA = 0x%0h inB = 0x%0h sel = 0x%0h Din = 0x%0h, Addr = 0x%0h, ValidCmd = 0x%0h",
-        $time, tag, inA, inB, Sel, Din, Addr, ValidCmd);
+      $display("T=%0t %s inA = 0x%0h inB = 0x%0h sel = 0x%0h Din = 0x%0h, Addr = 0x%0h, ValidCmd = 0x%0h, InputKey=%0b",
+        $time, tag, inA, inB, Sel, Din, Addr, ValidCmd, InputKey);
     endfunction
 
 endclass
