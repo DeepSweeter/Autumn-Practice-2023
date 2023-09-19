@@ -33,7 +33,7 @@ class scoreboard;
 
   //Actual values
   int SampleData;
-  logic [3:0] Sequence;
+  logic [3:0] Seq;
 
 
   //Supposed values
@@ -50,6 +50,7 @@ class scoreboard;
     SampleData = 0;
     counter_SampleTransfer = 0;
     Active = 0;
+    Seq = 4'b0;
     forever begin
 
       dut_package_in pkg_in;
@@ -69,9 +70,9 @@ class scoreboard;
 
       check_SampleTransfer(pkg_in, pkg_intern, Active, SampleData, counter_SampleTransfer, ExpectedSample, ExpectedTransfer);
       
-      check_SecretPhrase(pkg_in ,counter_SecretPhrase, Sequence, Active);
+      check_SecretPhrase(pkg_in ,counter_SecretPhrase, Seq, Active);
 
-      $display("T=%0t Counter = %0h , ValidCmd = %0h ,InputKey = %0h, Sequence= %4b, Active = %0h", $time, counter_SecretPhrase, pkg_in.ValidCmd, pkg_in.InputKey, Sequence, Active);
+      $display("T=%0t Counter = %0h , ValidCmd = %0h ,InputKey = %0h, Sequence= %4b, Active = %0h", $time, counter_SecretPhrase, pkg_in.ValidCmd, pkg_in.InputKey, Seq, Active);
     end
 
 
@@ -153,21 +154,21 @@ class scoreboard;
   endfunction
 
 
-  function automatic void check_SecretPhrase(dut_package_in pkg_in, ref int counter, ref logic[3:0] Sequence, ref int Active);
-    if(~pkg_in.Reset && pkg_in.ValidCmd && ~Active)begin
+  function automatic void check_SecretPhrase(dut_package_in pkg_in, ref int counter, ref logic[3:0] Seq, ref int Active);
+    if(~pkg_in.Reset & pkg_in.ValidCmd & ~Active)begin
       if(counter < 4)begin
-        Sequence[counter] = pkg_in.InputKey;
-        $display("HELLO from SecretPhrase =%4b, InputKey=%0b", Sequence,pkg_in.InputKey);
+        Seq[counter] = pkg_in.InputKey;
+        $display("HELLO from SecretPhrase =%4b, InputKey=%0b, Active = %0b", Seq,pkg_in.InputKey,Active);
         counter = counter + 1;
       end
       else if(counter == 4)begin
-        if(Sequence == 4'b0101)begin
+        if(Seq == 4'b0101)begin
           Active = 1'b1;
           counter =0;
-          $display("[SCOREBOARD-PASS] Sequence correct! Calculator Activated\n\t Sequence:: Expected = 4'b0101 // Actual = %4b", Sequence);
+          $display("[SCOREBOARD-PASS] Sequence correct! Calculator Activated\n\t Sequence:: Expected = 4'b0101 // Actual = %4b", Seq);
         end
         else
-          $error("[SCOREBOARD-ERROR] Sequence incorrect! Try Again\n\t Sequence:: Expected = 4'b**** // Actual = %4b", Sequence);
+          $error("[SCOREBOARD-ERROR] Sequence incorrect! Try Again\n\t Sequence:: Expected = 4'b**** // Actual = %4b", Seq);
           counter = 0;
       end
     end

@@ -69,13 +69,13 @@ module test();
       #0//Init values
       iData.Reset = 1'b1;
       #10
-      iData.ValidCmd = 1'b1;
+      
       iData.Reset = 1'b0;
       iData.ConfigDiv = 1'b1; iData.RW = 1'b1;
       #10
       iData.ConfigDiv = 1'b0;
 	  
-
+	iData.ValidCmd = 1'b1;
       t0 = new;
       t0.e0.interfaceID = iData;
       t0.e0.interfaceOD = oData;
@@ -85,7 +85,7 @@ module test();
       	t0.run();
       join_none
       @(t0.e0.g0.gen_done);
-      #80
+      #100
 //       iData.InputKey = 1'b1;
 //       #20
       iData.Reset = 1'b1;

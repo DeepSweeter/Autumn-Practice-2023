@@ -28,7 +28,7 @@ class generator;
 
       $display("T=%0t [GENERATOR] Loop: %0d/%0d create next item\n\tInputKey=%0h", $time, i, num, pck.InputKey);
       drv_mbx.put(pck);
-      @(drv_done);
+      
 
     end
     $display("T= %0t [GENERATOR] Done generation of %0d items", $time, num);

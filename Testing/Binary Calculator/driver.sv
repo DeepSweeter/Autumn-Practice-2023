@@ -11,6 +11,7 @@
 class driver;
     virtual inputData interfaceID;
     event drv_done;
+  event gen_done;
     mailbox drv_mbx;
 
 
@@ -24,6 +25,7 @@ class driver;
               dut_package_in dpi = new;
 
               $display("T=%0t [DRIVER] waiting for item ...", $time);
+              
               drv_mbx.get(dpi);
               dpi.print("DRIVER");
               interfaceID.commandInput = 1;
@@ -39,13 +41,12 @@ class driver;
               interfaceID.inB = dpi.inB;
               
               $display("T=%0t [DRIVER] finished processing ...", $time);
-              @(posedge interfaceID.Clk)begin
-              	interfaceID.commandInput =0;
-              ->drv_done;
-              end
-
-
+              @(posedge interfaceID.Clk);
+              	
+              
+              
         end
+      interfaceID.commandInput = 1;
     endtask
 
 endclass

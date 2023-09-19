@@ -17,7 +17,7 @@ class monitor_input;
     $display("T=%0t [MONITOR INPUT] starting ...", $time);
     forever begin
       @(posedge interfaceID.Clk);
-      if(interfaceID.commandInput) begin
+      if(1) begin
         dut_package_in pkg = new;
         pkg.Reset       =    interfaceID.Reset;
         pkg.ValidCmd    =    interfaceID.ValidCmd;
@@ -31,7 +31,6 @@ class monitor_input;
         pkg.InputKey    =    interfaceID.InputKey;
         scb_input_mbx.put(pkg);
         pkg.print("MONITOR_IN");
-
       end
     end
   endtask
